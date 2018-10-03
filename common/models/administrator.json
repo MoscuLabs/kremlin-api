@@ -1,0 +1,45 @@
+{
+  "name": "Administrator",
+  "plural": "Administrators",
+  "base": "User",
+  "idInjection": true,
+  "options": {
+    "validateUpsert": true
+  },
+  "properties": {
+    "first_name": {
+      "type": "string",
+      "required": true
+    },
+    "last_name": {
+      "type": "string",
+      "required": true
+    },
+    "gender": {
+      "type": "string"
+    },
+    "age": {
+      "type": "number"
+    },
+    "profile_img": {
+      "type": "string"
+    },
+    "created_at": {
+      "type": "date",
+      "default": "$now"
+    },
+    "birth_date": {
+      "type": "date"
+    }
+  },
+  "validations": [],
+  "relations": {
+    "proposals": {
+      "type": "hasMany",
+      "model": "Proposal",
+      "foreignKey": ""
+    }
+  },
+  "acls": [],
+  "methods": {}
+}

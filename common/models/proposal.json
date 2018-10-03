@@ -1,0 +1,41 @@
+{
+  "name": "Proposal",
+  "plural": "Proposals",
+  "base": "PersistedModel",
+  "idInjection": true,
+  "options": {
+    "validateUpsert": true
+  },
+  "properties": {
+    "name": {
+      "type": "string",
+      "required": true
+    },
+    "created_at": {
+      "type": "date",
+      "default": "$now"
+    },
+    "ownerId": {
+      "type": "string",
+      "required": true
+    },
+    "current_votes": {
+      "type": "number",
+      "required": true,
+      "default": 0
+    },
+    "max_votes": {
+      "type": "number",
+      "required": true
+    },
+    "status": {
+      "type": "number",
+      "required": true,
+      "default": 1
+    }
+  },
+  "validations": [],
+  "relations": {},
+  "acls": [],
+  "methods": {}
+}

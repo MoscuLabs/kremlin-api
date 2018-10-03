@@ -1,0 +1,59 @@
+{
+  "name": "Neighborhood",
+  "plural": "Neighborhoods",
+  "base": "PersistedModel",
+  "idInjection": true,
+  "options": {
+    "validateUpsert": true
+  },
+  "properties": {
+    "name": {
+      "type": "string",
+      "required": true
+    },
+    "location": {
+      "type": "geopoint",
+      "required": true
+    },
+    "created_at": {
+      "type": "date",
+      "default": "$now"
+    }
+  },
+  "validations": [],
+  "relations": {
+    "neighbors": {
+      "type": "hasAndBelongsToMany",
+      "model": "Neighbor",
+      "foreignKey": "",
+      "options": {
+        "nestRemoting": true
+      }
+    },
+    "administrators": {
+      "type": "hasAndBelongsToMany",
+      "model": "Administrator",
+      "foreignKey": "",
+      "options": {
+        "nestRemoting": true
+      }
+    },
+    "issues": {
+      "type": "hasMany",
+      "model": "Issue",
+      "foreignKey": ""
+    },
+    "proposals": {
+      "type": "hasMany",
+      "model": "Proposal",
+      "foreignKey": ""
+    },
+    "boards": {
+      "type": "hasMany",
+      "model": "board",
+      "foreignKey": ""
+    }
+  },
+  "acls": [],
+  "methods": {}
+}
