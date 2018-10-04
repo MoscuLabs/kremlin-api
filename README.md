@@ -38,18 +38,6 @@ node .
 
 Look for `http://localhost:3000/explorer/` in your browser.
 
-## Running the tests
-
-Explain how to run the automated tests for this system
-
-### Break down into end to end tests
-
-Explain what these tests test and why
-
-```
-Give an example
-```
-
 ## Deployment
 We will deploy the REST API server into Heroku using git.
 
