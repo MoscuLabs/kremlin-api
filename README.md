@@ -41,6 +41,9 @@ Look for `http://localhost:3000/explorer/` in your browser.
 ## Deployment
 We will deploy the REST API server into Heroku using git.
 
+You can check the public documentation explorer in [kremlin-api.heroku](https://kremlin-api.herokuapp.com/explorer/)
+
+
 ## Built With
 * [LoopBack](http://loopback.io) - The Node.js API Framework
 * [EsLint](https://eslint.org/) - The pluggable linting utility for JavaScript and JSX
