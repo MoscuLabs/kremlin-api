@@ -1,6 +1,13 @@
 {
   "db": {
+    "host": "mongo ds121603.mlab.com:21603/sochi",
+    "port": 21603,
+    "url": "mongodb://admin:adminputin1@ds121603.mlab.com:21603/sochi",
+    "database": "sochi",
+    "password": "adminputin1",
     "name": "db",
-    "connector": "memory"
+    "user": "admin",
+    "connector": "mongodb",
+    "useNewUrlParser": true
   }
 }
