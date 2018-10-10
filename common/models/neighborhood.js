@@ -4,18 +4,13 @@ var app = require('../../server/server');
 module.exports = function(Neighborhood) {
 
   Neighborhood.greet = function(arg, cb) {
-    var data = arg;
-    console.log(arg);
-    var item = {
-			topics : [],
-    }
     var Topic = app.models.Topic;
-    Topic.findById(data.topicId, function (err, topic) {
+    Topic.find({}, function (err, topic) {
 			return cb(null, topic)
 		})
   };
   Neighborhood.remoteMethod('greet', {
-    accepts: {arg: 'data', type: 'object', required: true},
+    accepts: {arg: 'data', type: 'object'},
     returns: {result: true, type: 'object'},
   });
 
