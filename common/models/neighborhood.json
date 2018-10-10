@@ -2,6 +2,14 @@
   "name": "Neighborhood",
   "plural": "Neighborhoods",
   "base": "PersistedModel",
+  "mixins": {
+    "CustomDescription": {
+      "descriptions": {
+        "deleteById": "My New Description for deleteById",
+        "findById": "My New Description for findById"
+      }
+    }
+  },
   "idInjection": true,
   "options": {
     "validateUpsert": true
