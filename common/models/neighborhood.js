@@ -20,18 +20,14 @@ module.exports = function(Neighborhood) {
   });
 
 
- Neighborhood.user_friends = function (idu,callback) {
-    var result =[
-      "usuario1",
-      "usuario2"
-    ]
-
+ Neighborhood.user_friends = function (idu,idn,callback) {
     var Neighbor = app.models.Neighbor;
-    Neighbor.findById(idu, function (err, topic1) {
-      return callback(null, topic1)
-      
-    })
+    Neighbor.updateAll({id: idu},{neighborhood: idn}, function(err, item){
+
+      return callback(null, item);
+    });
  }
+
  Neighborhood.remoteMethod('user_friends', {
   accepts: [
     {
@@ -41,7 +37,7 @@ module.exports = function(Neighborhood) {
       description: "User Id"
     },
     {
-      arg: "id",
+      arg: "idn",
       type: "string",
       required: true,
       description: "Nei Id"
@@ -56,7 +52,7 @@ module.exports = function(Neighborhood) {
   http: [
     {
       path: "/:id/addUser",
-      verb: "get"
+      verb: "post"
     }
   ]
 });
