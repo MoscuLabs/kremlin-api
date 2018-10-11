@@ -51,7 +51,7 @@ module.exports = function(Neighborhood) {
   ],
   http: [
     {
-      path: "/:id/addUser",
+      path: "/addUser",
       verb: "post"
     }
   ]

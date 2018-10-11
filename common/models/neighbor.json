@@ -25,6 +25,9 @@
     "neighborhood": {
       "type": "string"
     },
+    "representant": {
+      "type": "string",
+    },
     "age": {
       "type": "number"
     },
