@@ -38,6 +38,30 @@ module.exports = function(Neighborhood) {
     });
  }
 
+ Neighborhood.remoteMethod('getRep', {
+  accepts: [
+    {
+      arg: "idn",
+      type: "string",
+      required: true,
+      description: "Nei Id"
+    }
+  ],
+  returns: [
+    {
+      root: true,
+      type: "object"
+    }
+  ],
+  http: [
+    {
+      path: "/getRep",
+      verb: "get"
+    }
+  ]
+});
+
+
  Neighborhood.remoteMethod('user_friends', {
   accepts: [
     {
