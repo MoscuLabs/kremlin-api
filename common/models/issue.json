@@ -10,14 +10,6 @@
     "name": {
       "type": "string",
       "required": true
-    },
-    "created_at": {
-      "type": "date",
-      "default": "$now"
-    },
-    "ownerId": {
-      "type": "string",
-      "required": true
     }
   },
   "validations": [],
