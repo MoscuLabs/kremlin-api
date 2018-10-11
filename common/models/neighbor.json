@@ -62,7 +62,6 @@
       "principalId": "$everyone",
       "permission": "ALLOW"
     }
-
   ],
   "methods": {}
 }

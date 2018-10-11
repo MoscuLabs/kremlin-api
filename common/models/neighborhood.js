@@ -3,7 +3,6 @@ var app = require('../../server/server');
 
 module.exports = function(Neighborhood) {
 
-  
   Neighborhood.greet = function(arg, cb) {
     var item = {
 			topics : [],
@@ -13,6 +12,17 @@ module.exports = function(Neighborhood) {
 			return cb(null, topic)
 		})
   };
+
+  Neighborhood.greet2 = function(arg, cb) {
+    var Topic = app.models.Topic;
+    Topic.find({}, function (err, topic) {
+			return cb(null, topic)
+		})
+  };
+  Neighborhood.remoteMethod('greet2', {
+    accepts: {arg: 'data', type: 'object'},
+    returns: {result: true, type: 'object'},
+  });
 
   Neighborhood.remoteMethod('greet', {
     accepts: {arg: 'userID', type: 'string'},
@@ -56,5 +66,5 @@ module.exports = function(Neighborhood) {
     }
   ]
 });
-
 };
+//5bb52f51a3f2cb062f49e701
