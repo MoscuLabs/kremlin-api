@@ -23,7 +23,8 @@
       "type": "string"
     },
     "representant": {
-      "type": "string"
+      "type": "boolean",
+      "default": false
     },
     "age": {
       "type": "number"

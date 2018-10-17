@@ -39,21 +39,21 @@ module.exports = function(Neighborhood) {
     });
  }
 
- Neighborhood.getRep = function (idu,idn,callback) {
-  var Neighbor = app.models.Neighbor;
-  Neighbor.updateAll({id: idu},{neighborhoodId: idn}, function(err, item){
 
+ Neighborhood.ceaseRepresentative = function (neighborId,callback) {
+  var Neighbor = app.models.Neighbor;
+  Neighbor.updateAll({id: neighborId},{representant: false}, function(err, item){
     return callback(null, item);
   });
 }
 
- Neighborhood.remoteMethod('getRep', {
+ Neighborhood.remoteMethod('ceaseRepresentative', {
   accepts: [
     {
-      arg: "idn",
+      arg: "neighborId",
       type: "string",
       required: true,
-      description: "Nei Id"
+      description: "User Id"
     }
   ],
   returns: [
@@ -64,8 +64,39 @@ module.exports = function(Neighborhood) {
   ],
   http: [
     {
-      path: "/getRep",
-      verb: "get"
+      path: "/ceaseRepresentative",
+      verb: "post"
+    }
+  ]
+});
+
+
+ Neighborhood.makeRepresentative = function (neighborId,callback) {
+  var Neighbor = app.models.Neighbor;
+  Neighbor.updateAll({id: neighborId},{representant: true}, function(err, item){
+    return callback(null, item);
+  });
+}
+
+ Neighborhood.remoteMethod('makeRepresentative', {
+  accepts: [
+    {
+      arg: "neighborId",
+      type: "string",
+      required: true,
+      description: "User Id"
+    }
+  ],
+  returns: [
+    {
+      root: true,
+      type: "object"
+    }
+  ],
+  http: [
+    {
+      path: "/makeRepresentative",
+      verb: "post"
     }
   ]
 });
