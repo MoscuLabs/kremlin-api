@@ -31,13 +31,21 @@ module.exports = function(Neighborhood) {
   //where:{"neighborhood": arg}
 
 
- Neighborhood.user_friends = function (idu,idn,callback) {
+ Neighborhood.addNeighbor = function (idu,idn,callback) {
     var Neighbor = app.models.Neighbor;
-    Neighbor.updateAll({id: idu},{neighborhood: idn}, function(err, item){
+    Neighbor.updateAll({id: idu},{neighborhoodId: idn}, function(err, item){
 
       return callback(null, item);
     });
  }
+
+ Neighborhood.getRep = function (idu,idn,callback) {
+  var Neighbor = app.models.Neighbor;
+  Neighbor.updateAll({id: idu},{neighborhoodId: idn}, function(err, item){
+
+    return callback(null, item);
+  });
+}
 
  Neighborhood.remoteMethod('getRep', {
   accepts: [
@@ -63,19 +71,19 @@ module.exports = function(Neighborhood) {
 });
 
 
- Neighborhood.remoteMethod('user_friends', {
+ Neighborhood.remoteMethod('addNeighbor', {
   accepts: [
     {
-      arg: "idu",
+      arg: "neighborId",
       type: "string",
       required: true,
       description: "User Id"
     },
     {
-      arg: "idn",
+      arg: "neighboorhoodId",
       type: "string",
       required: true,
-      description: "Nei Id"
+      description: "neighboorhood Id"
     }
   ],
   returns: [
@@ -86,7 +94,7 @@ module.exports = function(Neighborhood) {
   ],
   http: [
     {
-      path: "/addUser",
+      path: "/addNeighbor",
       verb: "post"
     }
   ]
