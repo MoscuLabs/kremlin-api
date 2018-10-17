@@ -31,13 +31,7 @@
     }
   },
   "validations": [],
-  "relations": {
-    "proposals": {
-      "type": "hasMany",
-      "model": "Proposal",
-      "foreignKey": ""
-    }
-  },
+  "relations": {},
   "acls": [],
   "methods": {}
 }

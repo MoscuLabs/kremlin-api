@@ -11,7 +11,7 @@
       "type": "string",
       "required": true
     },
-    "password":{
+    "password": {
       "type": "string",
       "required": true
     },
@@ -20,9 +20,6 @@
       "required": true
     },
     "gender": {
-      "type": "string"
-    },
-    "neighborhood": {
       "type": "string"
     },
     "representant": {
@@ -52,6 +49,16 @@
     "proposals": {
       "type": "hasMany",
       "model": "Proposal",
+      "foreignKey": ""
+    },
+    "neighborhood": {
+      "type": "belongsTo",
+      "model": "Neighborhood",
+      "foreignKey": ""
+    },
+    "votes": {
+      "type": "hasMany",
+      "model": "Vote",
       "foreignKey": ""
     }
   },

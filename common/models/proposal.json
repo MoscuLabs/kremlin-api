@@ -11,31 +11,49 @@
       "type": "string",
       "required": true
     },
+    "description": {
+      "type": "string",
+      "required": true
+    },
     "created_at": {
       "type": "date",
       "default": "$now"
     },
-    "ownerId": {
-      "type": "string",
-      "required": true
-    },
     "current_votes": {
       "type": "number",
-      "required": true,
       "default": 0
     },
     "max_votes": {
-      "type": "number",
-      "required": true
+      "type": "number"
     },
     "status": {
       "type": "number",
-      "required": true,
       "default": 1
     }
   },
   "validations": [],
-  "relations": {},
+  "relations": {
+    "neighbor": {
+      "type": "belongsTo",
+      "model": "Neighbor",
+      "foreignKey": ""
+    },
+    "neighborhood": {
+      "type": "belongsTo",
+      "model": "Neighborhood",
+      "foreignKey": ""
+    },
+    "category": {
+      "type": "belongsTo",
+      "model": "Category",
+      "foreignKey": ""
+    },
+    "votes": {
+      "type": "hasMany",
+      "model": "Vote",
+      "foreignKey": ""
+    }
+  },
   "acls": [],
   "methods": {}
 }

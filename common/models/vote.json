@@ -1,15 +1,14 @@
 {
-  "name": "Issue",
-  "plural": "Issues",
+  "name": "Vote",
+  "plural": "Votes",
   "base": "PersistedModel",
   "idInjection": true,
   "options": {
     "validateUpsert": true
   },
   "properties": {
-    "name": {
-      "type": "string",
-      "required": true
+    "created_at": {
+      "type": "date"
     }
   },
   "validations": [],
@@ -19,14 +18,9 @@
       "model": "Neighbor",
       "foreignKey": ""
     },
-    "neighborhood": {
+    "proposal": {
       "type": "belongsTo",
-      "model": "Neighborhood",
-      "foreignKey": ""
-    },
-    "topic": {
-      "type": "belongsTo",
-      "model": "Topic",
+      "model": "Proposal",
       "foreignKey": ""
     }
   },

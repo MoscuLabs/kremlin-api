@@ -7,27 +7,28 @@ module.exports = function(Neighborhood) {
     var item = {
 			topics : [],
     }
-    var Topic = app.models.Neighbor;
+    var Topic = app.models.Topic;
     Topic.findById(arg, function (err, topic) {
 			return cb(null, topic)
 		})
   };
-
-  Neighborhood.greet2 = function(arg, cb) {
-    var Topic = app.models.Topic;
-    Topic.find({}, function (err, topic) {
-			return cb(null, topic)
-		})
-  };
-  Neighborhood.remoteMethod('greet2', {
-    accepts: {arg: 'data', type: 'object'},
-    returns: {result: true, type: 'object'},
-  });
-
   Neighborhood.remoteMethod('greet', {
     accepts: {arg: 'userID', type: 'string'},
     returns: {root: true, type: 'object'},
   });
+
+  Neighborhood.greet2 = function(arg, cb) {
+    var Neighbor = app.models.Neighbor;
+    Neighbor.find({where: {neighborhoodId: arg}}, function (err, topic) {
+      console.log("greet2 ", topic);
+			return cb(null, topic)
+		})
+  };
+  Neighborhood.remoteMethod('greet2', {
+    accepts: {arg: 'data', type: 'string'},
+    returns: {result: 'topic', type: 'object'},
+  });
+  //where:{"neighborhood": arg}
 
 
  Neighborhood.user_friends = function (idu,idn,callback) {

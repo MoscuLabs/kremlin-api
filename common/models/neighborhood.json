@@ -23,16 +23,8 @@
   "validations": [],
   "relations": {
     "neighbors": {
-      "type": "hasAndBelongsToMany",
+      "type": "hasMany",
       "model": "Neighbor",
-      "foreignKey": "",
-      "options": {
-        "nestRemoting": true
-      }
-    },
-    "administrators": {
-      "type": "hasAndBelongsToMany",
-      "model": "Administrator",
       "foreignKey": "",
       "options": {
         "nestRemoting": true
