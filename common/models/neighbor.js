@@ -3,21 +3,34 @@ var app = require('../../server/server');
 
 module.exports = function(Neighbor) {
 
-    Neighbor.make_rep = function(idu, cb) {
-        var Neighborvar = app.models.Neighbor;
-        Neighborvar.updateAll({id: idu},{representant: "yes"}, function(err, item){
-
-            return cb(null, item);
-          });
+    Neighbor.voteForProposal = function(neigId,ProposId,neighborhoodId ,cb) {
+        //var Neighborvar = app.models.Neighbor;
+        //var Proposals = app.models.Proposal;
+        var votes = app.models.Vote;
+        votes.find({where:{proposalId:ProposId, neighborId:neigId}},function(err,topic1){
+          return cb(null, topic1)
+        })
       };
 
-      Neighbor.remoteMethod('make_rep', {
+      Neighbor.remoteMethod('voteForProposal', {
         accepts: [
           {
-            arg: "idu",
+            arg: "neighborId",
             type: "string",
             required: true,
             description: "User Id"
+          },
+          {
+            arg: "ProposalId",
+            type: "string",
+            required: true,
+            description: "Proposal Id"
+          },
+          {
+            arg: "neighborhoodId",
+            type: "string",
+            required: true,
+            description: "neighborhood Id"
           }
         ],
         returns: [
@@ -28,7 +41,7 @@ module.exports = function(Neighbor) {
         ],
         http: [
           {
-            path: "/makeRep",
+            path: "/voteForProposal",
             verb: "post"
           }
         ]

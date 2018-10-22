@@ -9,6 +9,10 @@
   "properties": {
     "created_at": {
       "type": "date"
+    },
+    "proposalId":{
+      "type": "string",
+      "required": true
     }
   },
   "validations": [],
