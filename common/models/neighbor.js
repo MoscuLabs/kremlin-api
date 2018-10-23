@@ -3,16 +3,22 @@ var app = require('../../server/server');
 
 module.exports = function(Neighbor) {
 
-    Neighbor.voteForProposal = function(neigId,ProposId,neighborhoodId ,cb) {
-        //var Neighborvar = app.models.Neighbor;
+    Neighbor.vote = function(neighbor, proposal, cb) {
         //var Proposals = app.models.Proposal;
-        var votes = app.models.Vote;
-        votes.find({where:{proposalId:ProposId, neighborId:neigId}},function(err,topic1){
-          return cb(null, topic1)
+        var Vote = app.models.Vote;
+        Vote.find({where:{proposalId:proposal, neighborId:neighbor}}, function(err,votes) {
+          console.log("Votes: ", votes);
+          if (votes.length > 1) {
+            return
+          }
+          else {
+            Vote.create
+          }
+          return cb(null, votes)
         })
       };
 
-      Neighbor.remoteMethod('voteForProposal', {
+      Neighbor.remoteMethod('vote', {
         accepts: [
           {
             arg: "neighborId",
@@ -21,16 +27,10 @@ module.exports = function(Neighbor) {
             description: "User Id"
           },
           {
-            arg: "ProposalId",
+            arg: "proposalId",
             type: "string",
             required: true,
             description: "Proposal Id"
-          },
-          {
-            arg: "neighborhoodId",
-            type: "string",
-            required: true,
-            description: "neighborhood Id"
           }
         ],
         returns: [
@@ -41,7 +41,7 @@ module.exports = function(Neighbor) {
         ],
         http: [
           {
-            path: "/voteForProposal",
+            path: "/vote",
             verb: "post"
           }
         ]
