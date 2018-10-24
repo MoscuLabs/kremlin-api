@@ -72,6 +72,10 @@
     "dataSource": "db",
     "public": true
   },
+  "Expense": {
+    "dataSource": "db",
+    "public": true
+  },
   "Container": {
     "dataSource": "filestore-mongo",
     "public": true

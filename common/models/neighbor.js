@@ -3,18 +3,19 @@ var app = require('../../server/server');
 
 module.exports = function(Neighbor) {
 
-    Neighbor.vote = function(neighbor, proposal, cb) {
-        //var Proposals = app.models.Proposal;
-        var Vote = app.models.Vote;
-        Vote.find({where:{proposalId:proposal, neighborId:neighbor}}, function(err,votes) {
-          console.log("Votes: ", votes);
-          if (votes.length > 1) {
-            return
+    Neighbor.voteForProposal = function(neigId,ProposId ,cb) {
+        var votes = app.models.Vote;
+        votes.find({where:{proposalId:ProposId, neighborId:neigId}},function(err,topic1){
+
+          if(topic1.length==[]){
+
+            votes.create({proposalId:ProposId, neighborId:neigId},function(err,topic2){
+              return cb(err, topic2)
+            })
+          }else{
+            return cb("ya votaste por esta propuesta")
           }
-          else {
-            Vote.create
-          }
-          return cb(null, votes)
+
         })
       };
 

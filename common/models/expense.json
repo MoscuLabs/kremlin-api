@@ -1,0 +1,38 @@
+{
+  "name": "Expense",
+  "plural": "Expenses",
+  "base": "PersistedModel",
+  "idInjection": true,
+  "options": {
+    "validateUpsert": true
+  },
+  "properties": {
+    "concept": {
+      "type": "string"
+    },
+    "amount": {
+      "type": "number"
+    },
+    "issued_date": {
+      "type": "date"
+    },
+    "beneficiary": {
+      "type": "string"
+    }
+  },
+  "validations": [],
+  "relations": {
+    "neighborhood": {
+      "type": "belongsTo",
+      "model": "Neighborhood",
+      "foreignKey": ""
+    },
+    "neighbor": {
+      "type": "belongsTo",
+      "model": "Neighbor",
+      "foreignKey": ""
+    }
+  },
+  "acls": [],
+  "methods": {}
+}
