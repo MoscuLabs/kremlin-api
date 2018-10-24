@@ -71,5 +71,9 @@
   "Vote": {
     "dataSource": "db",
     "public": true
+  },
+  "Container": {
+    "dataSource": "filestore-mongo",
+    "public": true
   }
 }

@@ -9,5 +9,13 @@
     "user": "admin",
     "connector": "mongodb",
     "useNewUrlParser": true
+  },
+  "filestore-mongo": {
+    "host": "mongo ds121603.mlab.com:21603/sochi",
+    "port": 21603,
+    "url": "mongodb://admin:adminputin1@ds121603.mlab.com:21603/sochi",
+    "database": "sochi",
+    "provider": "filestore-mongo",
+    "connector": "loopback-component-storage-mongo"
   }
 }

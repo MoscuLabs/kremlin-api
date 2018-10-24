@@ -10,7 +10,7 @@
     "created_at": {
       "type": "date"
     },
-    "proposalId":{
+    "proposalId": {
       "type": "string",
       "required": true
     }
