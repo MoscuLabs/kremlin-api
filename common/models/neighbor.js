@@ -3,12 +3,19 @@ var app = require('../../server/server');
 
 module.exports = function(Neighbor) {
 
-    Neighbor.voteForProposal = function(neigId,ProposId,neighborhoodId ,cb) {
-        //var Neighborvar = app.models.Neighbor;
-        //var Proposals = app.models.Proposal;
+    Neighbor.voteForProposal = function(neigId,ProposId ,cb) {
         var votes = app.models.Vote;
         votes.find({where:{proposalId:ProposId, neighborId:neigId}},function(err,topic1){
-          return cb(null, topic1)
+          
+          if(topic1.length==[]){
+
+            votes.create({proposalId:ProposId, neighborId:neigId},function(err,topic2){
+              return cb(err, topic2)
+            })
+          }else{
+            return cb("ya votaste por esta propuesta")
+          }
+          
         })
       };
 
@@ -25,12 +32,6 @@ module.exports = function(Neighbor) {
             type: "string",
             required: true,
             description: "Proposal Id"
-          },
-          {
-            arg: "neighborhoodId",
-            type: "string",
-            required: true,
-            description: "neighborhood Id"
           }
         ],
         returns: [
