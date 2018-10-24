@@ -44,6 +44,11 @@
       "type": "hasMany",
       "model": "board",
       "foreignKey": ""
+    },
+    "expenses": {
+      "type": "hasMany",
+      "model": "Expense",
+      "foreignKey": ""
     }
   },
   "acls": [],

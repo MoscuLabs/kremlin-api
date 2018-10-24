@@ -1,30 +1,35 @@
 {
-  "name": "Vote",
-  "plural": "Votes",
+  "name": "Expense",
+  "plural": "Expenses",
   "base": "PersistedModel",
   "idInjection": true,
   "options": {
     "validateUpsert": true
   },
   "properties": {
-    "created_at": {
+    "concept": {
+      "type": "string"
+    },
+    "amount": {
+      "type": "number"
+    },
+    "issued_date": {
       "type": "date"
     },
-    "proposalId": {
-      "type": "string",
-      "required": true
+    "beneficiary": {
+      "type": "string"
     }
   },
   "validations": [],
   "relations": {
+    "neighborhood": {
+      "type": "belongsTo",
+      "model": "Neighborhood",
+      "foreignKey": ""
+    },
     "neighbor": {
       "type": "belongsTo",
       "model": "Neighbor",
-      "foreignKey": ""
-    },
-    "proposal": {
-      "type": "belongsTo",
-      "model": "Proposal",
       "foreignKey": ""
     }
   },
