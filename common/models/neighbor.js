@@ -3,7 +3,7 @@ var app = require('../../server/server');
 
 module.exports = function(Neighbor) {
 
-    Neighbor.voteForProposal = function(neigId,ProposId ,cb) {
+    Neighbor.vote = function(neigId,ProposId ,cb) {
         var votes = app.models.Vote;
         votes.find({where:{proposalId:ProposId, neighborId:neigId}},function(err,topic1){
 

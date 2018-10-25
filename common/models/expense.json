@@ -14,7 +14,8 @@
       "type": "number"
     },
     "issued_date": {
-      "type": "date"
+      "type": "date",
+      "default": "$now"
     },
     "beneficiary": {
       "type": "string"
