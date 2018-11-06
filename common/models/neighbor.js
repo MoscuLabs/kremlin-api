@@ -56,4 +56,43 @@ module.exports = function(Neighbor) {
     ]
   });
 
+
+  Neighbor.request = function(id, fk , callback) {
+
+  };
+
+
+
+
+  Neighbor.remoteMethod('request', {
+    accepts: [
+      {
+        arg: "id",
+        type: "string",
+        required: true,
+        description: "Neighbor Id",
+        http: { source: 'path' }
+      },
+      {
+        arg: "fk",
+        type: "string",
+        required: true,
+        description: "Neighboorhood Id",
+        http: { source: 'path' }
+      }
+    ],
+    returns: [
+      {
+        root: true,
+        type: "object"
+      }
+    ],
+    http: [
+      {
+        path: "/:id/request/:fk",
+        verb: "post"
+      }
+    ]
+  });
+
 };

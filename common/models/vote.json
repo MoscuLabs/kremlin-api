@@ -9,6 +9,13 @@
   "properties": {
     "created_at": {
       "type": "date"
+    },
+    "Option": {
+      "type": "number",
+      "required": true
+    },
+    "Comment": {
+      "type": "string"
     }
   },
   "validations": [],
