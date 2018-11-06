@@ -73,6 +73,11 @@
       "type": "hasMany",
       "model": "Expense",
       "foreignKey": ""
+    },
+    "request": {
+      "type": "hasOne",
+      "model": "Request",
+      "foreignKey": ""
     }
   },
   "acls": [

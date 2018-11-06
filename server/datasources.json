@@ -15,6 +15,7 @@
     "port": 21603,
     "url": "mongodb://admin:adminputin1@ds121603.mlab.com:21603/sochi",
     "database": "sochi",
+    "name": "filestore-mongo",
     "provider": "filestore-mongo",
     "connector": "loopback-component-storage-mongo"
   }

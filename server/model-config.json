@@ -79,5 +79,9 @@
   "Container": {
     "dataSource": "filestore-mongo",
     "public": true
+  },
+  "Request": {
+    "dataSource": "db",
+    "public": true
   }
 }

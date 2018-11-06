@@ -1,0 +1,24 @@
+{
+  "name": "Request",
+  "plural": "Requests",
+  "base": "PersistedModel",
+  "idInjection": true,
+  "options": {
+    "validateUpsert": true
+  },
+  "properties": {
+    "created_at": {
+      "type": "date"
+    },
+    "message": {
+      "type": "string"
+    },
+    "code": {
+      "type": "string"
+    }
+  },
+  "validations": [],
+  "relations": {},
+  "acls": [],
+  "methods": {}
+}
