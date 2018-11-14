@@ -13,8 +13,9 @@
     "message": {
       "type": "string"
     },
-    "code": {
-      "type": "string"
+    "status": {
+      "type": "boolean",
+      "default": false
     }
   },
   "validations": [],

@@ -1,5 +1,6 @@
 'use strict';
 var app = require('../../server/server');
+var MethodoAcceptedButNotAllowed = 405;
 
 module.exports = function(Neighborhood) {
   Neighborhood.addNeighbor = function (neigbhorId, neigbhorhoodId, cb) {
@@ -9,7 +10,7 @@ module.exports = function(Neighborhood) {
       if (neighbor.neighborhoodId || (neighbor.neighborhoodId != null)) {
         var errorText = "Neighbor "+ neighbor.id +" is already in a Neighborhood"
         var error = new Error(errorText);
-        error.status = 405;
+        error.status = MethodoAcceptedButNotAllowed;
         return cb(error);
       }
       else {
@@ -59,7 +60,7 @@ module.exports = function(Neighborhood) {
     Neighbor.findById(neigbhorId, function(err, neighbor){
       if (!neighbor.neighborhoodId || (neighbor.neighborhoodId == null)) {
         var error = new Error("Neighbor doesn't belong to a Neighborhood");
-        error.status = 405;
+        error.status = MethodoAcceptedButNotAllowed;
         return cb(error);
       }
       else {
