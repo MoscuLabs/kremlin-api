@@ -164,5 +164,4 @@ module.exports = function(Neighborhood) {
       }
     ]
   });
-
 };
