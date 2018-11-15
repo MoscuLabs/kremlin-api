@@ -1,134 +1,172 @@
 'use strict';
 var app = require('../../server/server');
+var MethodoAcceptedButNotAllowed = 405;
 
 module.exports = function(Neighborhood) {
+  Neighborhood.addNeighbor = function (neigbhorId, neigbhorhoodId, cb) {
+    var Neighbor = app.models.Neighbor;
+    var Proposal = app.models.Proposal;
+    Neighbor.findById(neigbhorId, function(err, neighbor){
+      if (neighbor.neighborhoodId || (neighbor.neighborhoodId != null)) {
+        var errorText = "Neighbor "+ neighbor.id +" is already in a Neighborhood"
+        var error = new Error(errorText);
+        error.status = MethodoAcceptedButNotAllowed;
+        return cb(error);
+      }
+      else {
+        Neighbor.updateAll({id: neigbhorId},{neighborhoodId: neigbhorhoodId}, function(err, res) {
+          Neighbor.count({neighborhoodId: neigbhorhoodId}, function(err, countNeighbors) {
+            Proposal.updateAll({neighborhoodId:neigbhorhoodId},{max_votes: countNeighbors}, function(err, proposals) {
+              return cb(null, proposals);
+            });
+          });
+        });
+      }
+    });
+ };
 
-  Neighborhood.greet = function(arg, cb) {
-    var item = {
-			topics : [],
-    }
-    var Topic = app.models.Topic;
-    Topic.findById(arg, function (err, topic) {
-			return cb(null, topic)
-		})
-  };
-  Neighborhood.remoteMethod('greet', {
-    accepts: {arg: 'userID', type: 'string'},
-    returns: {root: true, type: 'object'},
+  Neighborhood.remoteMethod('addNeighbor', {
+    accepts: [
+      {
+        arg: "fk",
+        type: "string",
+        required: true,
+        description: "Neighbor Id",
+        http: { source: 'path' }
+      },
+      {
+        arg: "id",
+        type: "string",
+        required: true,
+        description: "Neighboorhood Id",
+        http: { source: 'path' }
+      }
+    ],
+    returns: [
+      {
+        root: true,
+        type: "object"
+      }
+    ],
+    http: [
+      {
+        path: "/:id/addNeighbor/:fk",
+        verb: "post"
+      }
+    ]
   });
 
-  Neighborhood.greet2 = function(arg, cb) {
+  Neighborhood.kickNeighbor = function (neigbhorId, neigbhorhoodId, cb) {
     var Neighbor = app.models.Neighbor;
-    Neighbor.find({where: {neighborhoodId: arg}}, function (err, topic) {
-      console.log("greet2 ", topic);
-			return cb(null, topic)
-		})
-  };
-  Neighborhood.remoteMethod('greet2', {
-    accepts: {arg: 'data', type: 'string'},
-    returns: {result: 'topic', type: 'object'},
+    var Proposal = app.models.Proposal;
+    Neighbor.findById(neigbhorId, function(err, neighbor){
+      if (!neighbor.neighborhoodId || (neighbor.neighborhoodId == null)) {
+        var error = new Error("Neighbor doesn't belong to a Neighborhood");
+        error.status = MethodoAcceptedButNotAllowed;
+        return cb(error);
+      }
+      else {
+        Neighbor.updateAll({id: neigbhorId},{neighborhoodId: null}, function(err, res) {
+          Neighbor.count({neighborhoodId: neigbhorhoodId}, function(err, countNeighbors) {
+            Proposal.updateAll({neighborhoodId:neigbhorhoodId},{max_votes: countNeighbors}, function(err, proposals) {
+              return cb(null, proposals);
+            });
+          });
+        });
+      }
+    });
+ };
+
+  Neighborhood.remoteMethod('kickNeighbor', {
+    accepts: [
+      {
+        arg: "id",
+        type: "string",
+        required: true,
+        description: "Neighboorhood Id",
+        http: { source: 'path' }
+      },
+      {
+        arg: "fk",
+        type: "string",
+        required: true,
+        description: "Neighbor Id",
+        http: { source: 'path' }
+      }
+    ],
+    returns: [
+      {
+        root: true,
+        type: "object"
+      }
+    ],
+    http: [
+      {
+        path: "/:id/kickNeighbor/:fk",
+        verb: "post"
+      }
+    ]
   });
-  //where:{"neighborhood": arg}
 
-
- Neighborhood.addNeighbor = function (idu,idn,callback) {
+  Neighborhood.makeRepresentative = function (neighborId,callback) {
     var Neighbor = app.models.Neighbor;
-    Neighbor.updateAll({id: idu},{neighborhoodId: idn}, function(err, item){
-
+    Neighbor.updateAll({id: neighborId},{representant: true}, function(err, item) {
       return callback(null, item);
     });
- }
+  };
 
-
- Neighborhood.ceaseRepresentative = function (neighborId,callback) {
-  var Neighbor = app.models.Neighbor;
-  Neighbor.updateAll({id: neighborId},{representant: false}, function(err, item){
-    return callback(null, item);
+  Neighborhood.remoteMethod('makeRepresentative', {
+    accepts: [
+      {
+        arg: "fk",
+        type: "string",
+        required: true,
+        description: "Neighbor Id",
+        http: { source: 'path' }
+      }
+    ],
+    returns: [
+      {
+        root: true,
+        type: "object"
+      }
+    ],
+    http: [
+      {
+        path: "/makeRepresentative/:fk",
+        verb: "post"
+      }
+    ]
   });
-}
 
- Neighborhood.remoteMethod('ceaseRepresentative', {
-  accepts: [
-    {
-      arg: "neighborId",
-      type: "string",
-      required: true,
-      description: "User Id"
-    }
-  ],
-  returns: [
-    {
-      root: true,
-      type: "object"
-    }
-  ],
-  http: [
-    {
-      path: "/ceaseRepresentative",
-      verb: "post"
-    }
-  ]
-});
+  Neighborhood.ceaseRepresentative = function (neighborId,callback) {
+    var Neighbor = app.models.Neighbor;
+    Neighbor.updateAll({id: neighborId},{representant: false}, function(err, item) {
+      return callback(null, item);
+    });
+  };
 
-
- Neighborhood.makeRepresentative = function (neighborId,callback) {
-  var Neighbor = app.models.Neighbor;
-  Neighbor.updateAll({id: neighborId},{representant: true}, function(err, item){
-    return callback(null, item);
+  Neighborhood.remoteMethod('ceaseRepresentative', {
+    accepts: [
+      {
+        arg: "fk",
+        type: "string",
+        required: true,
+        description: "Neighbor Id",
+        http: { source: 'path' }
+      }
+    ],
+    returns: [
+      {
+        root: true,
+        type: "object"
+      }
+    ],
+    http: [
+      {
+        path: "/ceaseRepresentative/:fk",
+        verb: "post"
+      }
+    ]
   });
-}
-
- Neighborhood.remoteMethod('makeRepresentative', {
-  accepts: [
-    {
-      arg: "neighborId",
-      type: "string",
-      required: true,
-      description: "User Id"
-    }
-  ],
-  returns: [
-    {
-      root: true,
-      type: "object"
-    }
-  ],
-  http: [
-    {
-      path: "/makeRepresentative",
-      verb: "post"
-    }
-  ]
-});
-
-
- Neighborhood.remoteMethod('addNeighbor', {
-  accepts: [
-    {
-      arg: "neighborId",
-      type: "string",
-      required: true,
-      description: "User Id"
-    },
-    {
-      arg: "neighboorhoodId",
-      type: "string",
-      required: true,
-      description: "neighboorhood Id"
-    }
-  ],
-  returns: [
-    {
-      root: true,
-      type: "object"
-    }
-  ],
-  http: [
-    {
-      path: "/addNeighbor",
-      verb: "post"
-    }
-  ]
-});
 };
-//5bb52f51a3f2cb062f49e701

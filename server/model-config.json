@@ -15,7 +15,7 @@
   },
   "User": {
     "dataSource": "db",
-    "public": true
+    "public": false
   },
   "AccessToken": {
     "dataSource": "db",
@@ -36,31 +36,15 @@
     "dataSource": "db",
     "public": false
   },
-  "Topic": {
-    "dataSource": "db",
-    "public": true
-  },
   "Neighbor": {
     "dataSource": "db",
     "public": true
-  },
-  "Administrator": {
-    "dataSource": "db",
-    "public": false
   },
   "Neighborhood": {
     "dataSource": "db",
     "public": true
   },
-  "Issue": {
-    "dataSource": "db",
-    "public": true
-  },
   "Category": {
-    "dataSource": "db",
-    "public": true
-  },
-  "Board": {
     "dataSource": "db",
     "public": true
   },
@@ -78,6 +62,10 @@
   },
   "Container": {
     "dataSource": "filestore-mongo",
+    "public": true
+  },
+  "Request": {
+    "dataSource": "db",
     "public": true
   }
 }

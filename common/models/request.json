@@ -1,18 +1,21 @@
 {
-  "name": "Board",
-  "plural": "Boards",
+  "name": "Request",
+  "plural": "Requests",
   "base": "PersistedModel",
   "idInjection": true,
   "options": {
     "validateUpsert": true
   },
   "properties": {
-    "name": {
-      "type": "string",
-      "required": true
+    "created_at": {
+      "type": "date"
     },
-    "description": {
+    "message": {
       "type": "string"
+    },
+    "status": {
+      "type": "boolean",
+      "default": false
     }
   },
   "validations": [],

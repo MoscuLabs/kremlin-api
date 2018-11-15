@@ -10,9 +10,12 @@
     "created_at": {
       "type": "date"
     },
-    "proposalId": {
-      "type": "string",
+    "Option": {
+      "type": "number",
       "required": true
+    },
+    "Comment": {
+      "type": "string"
     }
   },
   "validations": [],

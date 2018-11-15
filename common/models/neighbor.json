@@ -29,6 +29,10 @@
       "type": "boolean",
       "default": false
     },
+    "isAllowedToPropose": {
+      "type": "boolean",
+      "default": false
+    },
     "age": {
       "type": "number"
     },
@@ -68,6 +72,11 @@
     "expenses": {
       "type": "hasMany",
       "model": "Expense",
+      "foreignKey": ""
+    },
+    "request": {
+      "type": "hasOne",
+      "model": "Request",
       "foreignKey": ""
     }
   },
