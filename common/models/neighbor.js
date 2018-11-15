@@ -3,7 +3,6 @@ var app = require('../../server/server');
 var MethodoAcceptedButNotAllowed = 405;
 
 module.exports = function(Neighbor) {
-
   Neighbor.vote = function(neighborId, proposalId ,comment, option, callback) {
     var Vote = app.models.Vote;
     var Proposal = app.models.Proposal;
@@ -31,10 +30,11 @@ module.exports = function(Neighbor) {
   Neighbor.remoteMethod('vote', {
     accepts: [
       {
-        arg: "neighborId",
+        arg: "id",
         type: "string",
         required: true,
-        description: "Neighbor Id"
+        description: "Neighbor Id",
+        http: { source: 'path' }
       },
       {
         arg: "proposalId",
@@ -62,13 +62,11 @@ module.exports = function(Neighbor) {
     ],
     http: [
       {
-        path: "/vote",
+        path: "/:id/vote",
         verb: "post"
       }
     ]
   });
-
-
 
   Neighbor.cancelRequest = function (id,callback) {
     var Request = app.models.Request;
@@ -76,7 +74,6 @@ module.exports = function(Neighbor) {
       return callback(null, item);
     });
   };
-
 
   Neighbor.remoteMethod('cancelRequest', {
     accepts: [
@@ -102,11 +99,6 @@ module.exports = function(Neighbor) {
       }
     ]
   });
-
-
-
-
-
 
   Neighbor.request = function(id, fk , comment ,callback) {
     var Request = app.models.Request;
@@ -168,5 +160,4 @@ module.exports = function(Neighbor) {
       }
     ]
   });
-
 };

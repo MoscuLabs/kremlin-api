@@ -28,16 +28,18 @@ module.exports = function(Neighborhood) {
   Neighborhood.remoteMethod('addNeighbor', {
     accepts: [
       {
-        arg: "neighborId",
+        arg: "fk",
         type: "string",
         required: true,
-        description: "Neighbor Id"
+        description: "Neighbor Id",
+        http: { source: 'path' }
       },
       {
-        arg: "neighboorhoodId",
+        arg: "id",
         type: "string",
         required: true,
-        description: "Neighboorhood Id"
+        description: "Neighboorhood Id",
+        http: { source: 'path' }
       }
     ],
     returns: [
@@ -48,7 +50,7 @@ module.exports = function(Neighborhood) {
     ],
     http: [
       {
-        path: "/addNeighbor",
+        path: "/:id/addNeighbor/:fk",
         verb: "post"
       }
     ]
@@ -116,10 +118,11 @@ module.exports = function(Neighborhood) {
   Neighborhood.remoteMethod('makeRepresentative', {
     accepts: [
       {
-        arg: "neighborId",
+        arg: "fk",
         type: "string",
         required: true,
-        description: "Neighbor Id"
+        description: "Neighbor Id",
+        http: { source: 'path' }
       }
     ],
     returns: [
@@ -130,7 +133,7 @@ module.exports = function(Neighborhood) {
     ],
     http: [
       {
-        path: "/makeRepresentative",
+        path: "/makeRepresentative/:fk",
         verb: "post"
       }
     ]
@@ -146,10 +149,11 @@ module.exports = function(Neighborhood) {
   Neighborhood.remoteMethod('ceaseRepresentative', {
     accepts: [
       {
-        arg: "neighborId",
+        arg: "fk",
         type: "string",
         required: true,
-        description: "Neighbor Id"
+        description: "Neighbor Id",
+        http: { source: 'path' }
       }
     ],
     returns: [
@@ -160,7 +164,7 @@ module.exports = function(Neighborhood) {
     ],
     http: [
       {
-        path: "/ceaseRepresentative",
+        path: "/ceaseRepresentative/:fk",
         verb: "post"
       }
     ]
