@@ -26,6 +26,7 @@ module.exports = function(Neighborhood) {
  };
 
   Neighborhood.remoteMethod('addNeighbor', {
+    description: 'Add an instance of the model Neighbor from this Neighborhood.',
     accepts: [
       {
         arg: "fk",
@@ -78,6 +79,7 @@ module.exports = function(Neighborhood) {
  };
 
   Neighborhood.remoteMethod('kickNeighbor', {
+    description: 'Take out an instance of the model Neighbor from this Neighborhood.',
     accepts: [
       {
         arg: "id",
@@ -116,6 +118,7 @@ module.exports = function(Neighborhood) {
   };
 
   Neighborhood.remoteMethod('makeRepresentative', {
+    description: 'Make an instance of the model Neighbor representative.',
     accepts: [
       {
         arg: "fk",
@@ -147,6 +150,7 @@ module.exports = function(Neighborhood) {
   };
 
   Neighborhood.remoteMethod('ceaseRepresentative', {
+    description: 'Cease an instance of the model Neighbor representative.',
     accepts: [
       {
         arg: "fk",
