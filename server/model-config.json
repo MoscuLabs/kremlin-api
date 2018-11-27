@@ -38,27 +38,114 @@
   },
   "Neighbor": {
     "dataSource": "db",
-    "public": true
+    "public": true,
+    "options": {
+      "remoting": {
+        "sharedMethods": {
+          "*": false,
+          "create":true,
+          "findById":true,
+          "deleteById": true,
+          "find": true,
+          "prototype.patchAttributes": true,
+          "vote": true,
+          "cancelRequest": true,
+          "request": true,
+          "count": true,
+          "login": true,
+          "logout": true
+        }
+      }
+    }
   },
   "Neighborhood": {
     "dataSource": "db",
-    "public": true
+    "public": true,
+    "options": {
+      "remoting": {
+        "sharedMethods": {
+          "*": false,
+          "create":true,
+          "findById":true,
+          "deleteById": true,
+          "find": true,
+          "prototype.patchAttributes": true,
+          "addNeighbor": true,
+          "kickNeighbor": true,
+          "makeRepresentative": true,
+          "ceaseRepresentative": true,
+          "count": true
+        }
+      }
+    }
   },
   "Category": {
     "dataSource": "db",
-    "public": true
+    "public": true,
+    "options": {
+      "remoting": {
+        "sharedMethods": {
+          "*": false,
+          "create":true,
+          "findById":true,
+          "deleteById": true,
+          "find": true,
+          "prototype.patchAttributes": true,
+          "count": true
+        }
+      }
+    }
   },
   "Proposal": {
     "dataSource": "db",
-    "public": true
+    "public": true,
+    "options": {
+      "remoting": {
+        "sharedMethods": {
+          "*": false,
+          "create":true,
+          "findById":true,
+          "deleteById": true,
+          "find": true,
+          "prototype.patchAttributes": true,
+          "count": true
+        }
+      }
+    }
   },
   "Vote": {
     "dataSource": "db",
-    "public": true
+    "public": true,
+    "options": {
+      "remoting": {
+        "sharedMethods": {
+          "*": false,
+          "create":true,
+          "findById":true,
+          "deleteById": true,
+          "find": true,
+          "prototype.patchAttributes": true,
+          "count": true
+        }
+      }
+    }
   },
   "Expense": {
     "dataSource": "db",
-    "public": true
+    "public": true,
+    "options": {
+      "remoting": {
+        "sharedMethods": {
+          "*": false,
+          "create":true,
+          "findById":true,
+          "deleteById": true,
+          "find": true,
+          "prototype.patchAttributes": true,
+          "count": true
+        }
+      }
+    }
   },
   "Container": {
     "dataSource": "filestore-mongo",
@@ -66,6 +153,19 @@
   },
   "Request": {
     "dataSource": "db",
-    "public": true
+    "public": true,
+    "options": {
+      "remoting": {
+        "sharedMethods": {
+          "*": false,
+          "create":true,
+          "findById":true,
+          "deleteById": true,
+          "find": true,
+          "prototype.patchAttributes": true,
+          "count": true
+        }
+      }
+    }
   }
 }
