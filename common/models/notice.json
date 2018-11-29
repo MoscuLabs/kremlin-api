@@ -1,0 +1,25 @@
+{
+  "name": "Notice",
+  "plural": "Notices",
+  "base": "PersistedModel",
+  "idInjection": true,
+  "options": {
+    "validateUpsert": true
+  },
+  "properties": {
+    "description": {
+      "type": "string",
+      "required": true
+    }
+  },
+  "validations": [],
+  "relations": {
+    "neighborhood": {
+      "type": "belongsTo",
+      "model": "Neighborhood",
+      "foreignKey": ""
+    }
+  },
+  "acls": [],
+  "methods": {}
+}
