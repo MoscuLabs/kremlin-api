@@ -11,10 +11,6 @@
       "type": "string",
       "required": true
     },
-    "password": {
-      "type": "string",
-      "required": true
-    },
     "last_name": {
       "type": "string",
       "required": true
@@ -82,9 +78,9 @@
   },
   "acls": [
     {
-      "accessType": "READ",
+      "accessType": "*",
       "principalType": "ROLE",
-      "principalId": "$everyone",
+      "principalId": "$authenticated",
       "permission": "ALLOW"
     }
   ],

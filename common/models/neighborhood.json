@@ -54,6 +54,11 @@
       "type": "hasMany",
       "model": "Request",
       "foreignKey": ""
+    },
+    "notices": {
+      "type": "hasMany",
+      "model": "Notice",
+      "foreignKey": ""
     }
   },
   "acls": [],

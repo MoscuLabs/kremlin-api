@@ -28,6 +28,7 @@ module.exports = function(Neighbor) {
   };
 
   Neighbor.remoteMethod('vote', {
+    description: 'Create an validate a new vote for this Neighbor to an specific Proposal.',
     accepts: [
       {
         arg: "id",
@@ -76,6 +77,7 @@ module.exports = function(Neighbor) {
   };
 
   Neighbor.remoteMethod('cancelRequest', {
+    description: 'Cancel the invitational request of this Neighbor to an specific Neighborhood.',
     accepts: [
       {
         arg: "id",
@@ -125,6 +127,7 @@ module.exports = function(Neighbor) {
   };
 
   Neighbor.remoteMethod('request', {
+    description: 'Create an invitational request of this Neighbor to an specific Neighborhood.',
     accepts: [
       {
         arg: "id",

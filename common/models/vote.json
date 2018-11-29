@@ -10,11 +10,11 @@
     "created_at": {
       "type": "date"
     },
-    "Option": {
+    "option": {
       "type": "number",
       "required": true
     },
-    "Comment": {
+    "comment": {
       "type": "string"
     }
   },
