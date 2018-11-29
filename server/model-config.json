@@ -152,7 +152,14 @@
   },
   "Container": {
     "dataSource": "filestore-mongo",
-    "public": true
+    "public": true,
+    "options": {
+      "remoting": {
+        "sharedMethods": {
+          "*": true
+        }
+      }
+    }
   },
   "Request": {
     "dataSource": "db",

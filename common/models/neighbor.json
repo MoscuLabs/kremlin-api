@@ -15,6 +15,10 @@
       "type": "string",
       "required": true
     },
+    "about": {
+      "type": "string",
+      "default": ""
+    },
     "position": {
       "type": "string"
     },
