@@ -53,7 +53,9 @@
           "request": true,
           "count": true,
           "login": true,
-          "logout": true
+          "logout": true,
+          "prototype.__get__accessTokens": true,
+          "prototype.__findById__accessTokens": true
         }
       }
     }
@@ -108,7 +110,8 @@
           "deleteById": true,
           "find": true,
           "prototype.patchAttributes": true,
-          "count": true
+          "count": true,
+          "unvote": true
         }
       }
     }
