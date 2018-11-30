@@ -19,7 +19,18 @@
     }
   },
   "validations": [],
-  "relations": {},
+  "relations": {
+    "neighbor": {
+      "type": "belongsTo",
+      "model": "Neighbor",
+      "foreignKey": ""
+    },
+    "neighborhood": {
+      "type": "belongsTo",
+      "model": "Neighborhood",
+      "foreignKey": ""
+    }
+  },
   "acls": [],
   "methods": {}
 }
