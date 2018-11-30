@@ -11,6 +11,10 @@
       "type": "string",
       "required": true
     },
+    "rules_file": {
+      "type": "string",
+      "default": ""
+    },
     "location": {
       "type": "geopoint",
       "required": true
