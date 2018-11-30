@@ -8,7 +8,7 @@ module.exports = function(Neighbor) {
     var Proposal = app.models.Proposal;
     Vote.find({where:{proposalId:proposalId, neighborId:neighborId}},function(err,topic1) {
       if (topic1.length == []) {
-        Vote.create({proposalId:proposalId, neighborId:neighborId, Option:option, Comment:comment},function(err,topic2){
+        Vote.create({proposalId:proposalId, neighborId:neighborId, option:option, comment:comment},function(err,topic2){
           Proposal.find({where: {id:proposalId}}, function (err, proposal) {
             var proposalToVote = JSON.stringify(proposal[0]);
             var objectValue = JSON.parse(proposalToVote).current_votes;
