@@ -3,7 +3,7 @@ var app = require('../../server/server');
 var MethodoAcceptedButNotAllowed = 405;
 
 module.exports = function(Neighbor) {
-  Neighbor.vote = function(neighborId, proposalId ,comment, option, callback) {
+  Neighbor.vote = function(neighborId, proposalId, option, comment, callback) {
     var Vote = app.models.Vote;
     var Proposal = app.models.Proposal;
     Vote.find({where:{proposalId:proposalId, neighborId:neighborId}},function(err,topic1) {
