@@ -7,7 +7,7 @@ module.exports = function(Neighborhood) {
     var Neighbor = app.models.Neighbor;
     var Proposal = app.models.Proposal;
     Neighbor.findById(neigbhorId, function(err, neighbor){
-      if (neighbor.neighborhoodId || (neighbor.neighborhoodId != null)) {
+      if (neighbor.neighborhoodId || (neighbor.neighborhoodId != "")) {
         var errorText = "Neighbor "+ neighbor.id +" is already in a Neighborhood"
         var error = new Error(errorText);
         error.status = MethodoAcceptedButNotAllowed;
@@ -23,7 +23,7 @@ module.exports = function(Neighborhood) {
         });
       }
     });
- };
+  };
 
   Neighborhood.remoteMethod('addNeighbor', {
     description: 'Add an instance of the model Neighbor from this Neighborhood.',
@@ -57,42 +57,42 @@ module.exports = function(Neighborhood) {
     ]
   });
 
-  Neighborhood.kickNeighbor = function (neigbhorId, neigbhorhoodId, cb) {
+  Neighborhood.kickNeighbor = function (fk, id, cb) {
     var Neighbor = app.models.Neighbor;
     var Proposal = app.models.Proposal;
-    Neighbor.findById(neigbhorId, function(err, neighbor){
-      if (!neighbor.neighborhoodId || (neighbor.neighborhoodId == null)) {
+    Neighbor.findById(fk, function(err, neighbor){
+      if (!neighbor.neighborhoodId || (neighbor.neighborhoodId == "")) {
         var error = new Error("Neighbor doesn't belong to a Neighborhood");
         error.status = MethodoAcceptedButNotAllowed;
         return cb(error);
       }
       else {
-        Neighbor.updateAll({id: neigbhorId},{neighborhoodId: null}, function(err, res) {
-          Neighbor.count({neighborhoodId: neigbhorhoodId}, function(err, countNeighbors) {
-            Proposal.updateAll({neighborhoodId:neigbhorhoodId},{max_votes: countNeighbors}, function(err, proposals) {
+        Neighbor.updateAll({id: fk},{neighborhoodId: ""}, function(err, res) {
+          Neighbor.count({neighborhoodId: id}, function(err, countNeighbors) {
+            Proposal.updateAll({neighborhoodId:id},{max_votes: countNeighbors}, function(err, proposals) {
               return cb(null, proposals);
             });
           });
         });
       }
     });
- };
+  };
 
   Neighborhood.remoteMethod('kickNeighbor', {
     description: 'Take out an instance of the model Neighbor from this Neighborhood.',
     accepts: [
       {
+        arg: "fk",
+        type: "string",
+        required: true,
+        description: "Neighboor Id",
+        http: { source: 'path' }
+      },
+      {
         arg: "id",
         type: "string",
         required: true,
         description: "Neighboorhood Id",
-        http: { source: 'path' }
-      },
-      {
-        arg: "fk",
-        type: "string",
-        required: true,
-        description: "Neighbor Id",
         http: { source: 'path' }
       }
     ],
